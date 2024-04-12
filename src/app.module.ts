@@ -4,6 +4,10 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { DataSource } from 'typeorm';
+import { Users } from './users/entities/user.entity';
+import { CommuneModule } from './commune/commune.module';
+import { RegionModule } from './region/region.module';
 
 @Module({
   imports: [UsersModule, AuthModule, TypeOrmModule.forRoot({
@@ -12,11 +16,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     port: 5432,
     username: 'dieg026',
     password: '95809580Dd',
-    database: '',
-    entities: [__dirname + '/**/*.entity{.ts,.js}'],
+    database: 'Matchbook_BD',
+    entities: [Users],
     synchronize: true, // Solo para entornos de desarrollo
-  })],
+    autoLoadEntities: true,
+  }), CommuneModule, RegionModule],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { constructor(private dataSource: DataSource) {}}
