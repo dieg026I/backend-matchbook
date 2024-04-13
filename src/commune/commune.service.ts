@@ -1,26 +1,30 @@
 import { Injectable } from '@nestjs/common';
-import { CreateCommuneDto } from './dto/create-commune.dto';
-import { UpdateCommuneDto } from './dto/update-commune.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Commune } from './entities/commune.entity';
 
 @Injectable()
 export class CommuneService {
-  create(createCommuneDto: CreateCommuneDto) {
-    return 'This action adds a new commune';
+  constructor(
+    @InjectRepository(Commune)
+    private communeRepository: Repository<Commune>,
+  ) {}
+
+  async createComune(commune: Commune): Promise<Commune> {
+    return await this.communeRepository.save(commune);
+  }
+  findAll(): Promise<Commune[]> {
+    return this.communeRepository.find();
   }
 
-  findAll() {
-    return `This action returns all commune`;
+  findOne(id_commune: string): Promise<Commune | null> {
+    return this.communeRepository.findOneBy({id_commune});
   }
-
-  findOne(id: number) {
-    return `This action returns a #${id} commune`;
+  async updateUser(id: string, user: Commune): Promise<Commune> {
+    await this.communeRepository.update(id, user);
+    return this.findOne(id);
   }
-
-  update(id: number, updateCommuneDto: UpdateCommuneDto) {
-    return `This action updates a #${id} commune`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} commune`;
+  async removeRegion(id_commune: string): Promise<void> {
+    await this.communeRepository.delete(id_commune);
   }
 }

@@ -1,4 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
+import { Commune } from 'src/commune/entities/commune.entity';
+import { Region } from 'src/region/entities/region.entity';
+
 
 @Entity()
 export class Users {
@@ -26,7 +29,11 @@ export class Users {
   @Column()
   photo_user: string;
 
- 
+  @OneToOne(type => Commune, commune=> commune.name_commune)
+  commune: Commune[];
+
+  @OneToOne(type => Region, region=> region.name_region)
+  region: Region[];
 
 
 }

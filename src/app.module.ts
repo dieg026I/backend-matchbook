@@ -8,6 +8,8 @@ import { DataSource } from 'typeorm';
 import { Users } from './users/entities/user.entity';
 import { CommuneModule } from './commune/commune.module';
 import { RegionModule } from './region/region.module';
+import { Commune } from './commune/entities/commune.entity';
+import { Region } from './region/entities/region.entity';
 
 @Module({
   imports: [UsersModule, AuthModule, TypeOrmModule.forRoot({
@@ -17,7 +19,7 @@ import { RegionModule } from './region/region.module';
     username: 'dieg026',
     password: '95809580Dd',
     database: 'Matchbook_BD',
-    entities: [Users],
+    entities: [Users, Commune, Region],
     synchronize: true, // Solo para entornos de desarrollo
     autoLoadEntities: true,
   }), CommuneModule, RegionModule],
