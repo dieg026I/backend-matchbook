@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
 import { CommuneModule } from './commune.module';
-import { CommuneService } from './commune.service';
-import { CommuneController } from './commune.controller';
+import { CitiesService } from './commune.service';
+import { CitiesController } from './commune.controller';
+
 
 @Module({
     
   imports: [CommuneModule],
-  providers: [CommuneService],
-  controllers: [CommuneController]})
+  providers: [CitiesService],
+  controllers: [CitiesController]})
 
-export class CommuneHttpModule {}
+export class CitiesHttpModule {}

@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { CommuneService } from './commune.service';
-import { CommuneController } from './commune.controller';
+import { CitiesService } from './commune.service';
+import { CitiesController } from './commune.controller';
 
 @Module({
-  controllers: [CommuneController],
-  providers: [CommuneService],
+  controllers: [CitiesController],
+  providers: [CitiesService],
 })
 export class CommuneModule {}

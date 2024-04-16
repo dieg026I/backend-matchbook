@@ -2,20 +2,16 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
 import { Region } from '../../region/entities/region.entity';
 
-export class Commune {
+export class Cities {
   @PrimaryGeneratedColumn()
-  id_commune: string;
+  id_city: string;
 
   @Column()
-  name_commune: string;  
+  name: string;  
   
   @OneToOne(type => Region, region=> region.name_region)
   region: Region[];
   
- 
-
- 
-
 
 }
 

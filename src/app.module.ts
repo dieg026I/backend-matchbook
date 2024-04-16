@@ -8,7 +8,7 @@ import { DataSource } from 'typeorm';
 import { Users } from './users/entities/user.entity';
 import { CommuneModule } from './commune/commune.module';
 import { RegionModule } from './region/region.module';
-import { Commune } from './commune/entities/commune.entity';
+import { Cities } from './commune/entities/cities.entity';
 import { Region } from './region/entities/region.entity';
 
 @Module({
@@ -19,7 +19,7 @@ import { Region } from './region/entities/region.entity';
     username: 'dieg026',
     password: '95809580Dd',
     database: 'Matchbook_BD',
-    entities: [Users, Commune, Region],
+    entities: [Users, Cities, Region],
     synchronize: true, // Solo para entornos de desarrollo
     autoLoadEntities: true,
   }), CommuneModule, RegionModule],

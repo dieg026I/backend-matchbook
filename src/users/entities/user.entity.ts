@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
-import { Commune } from 'src/commune/entities/commune.entity';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Cities } from 'src/commune/entities/cities.entity';
 import { Region } from 'src/region/entities/region.entity';
 
 
@@ -29,10 +29,10 @@ export class Users {
   @Column()
   photo_user: string;
 
-  @OneToOne(type => Commune, commune=> commune.name_commune)
-  commune: Commune[];
+  @ManyToOne(() => Cities)
+  commune: Cities[];
 
-  @OneToOne(type => Region, region=> region.name_region)
+  @ManyToOne(() => Region)
   region: Region[];
 
 
