@@ -4,7 +4,6 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DataSource } from 'typeorm';
 import { Users } from './users/entities/user.entity';
 import { CommuneModule } from './commune/commune.module';
 import { RegionModule } from './region/region.module';
@@ -12,7 +11,7 @@ import { Cities } from './commune/entities/cities.entity';
 import { Region } from './region/entities/region.entity';
 
 @Module({
-  imports: [UsersModule, AuthModule, TypeOrmModule.forRoot({
+  imports: [ TypeOrmModule.forRoot({
     type: 'postgres',
     host: 'localhost',
     port: 5432,
@@ -21,9 +20,9 @@ import { Region } from './region/entities/region.entity';
     database: 'Matchbook_BD',
     entities: [Users, Cities, Region],
     synchronize: true, // Solo para entornos de desarrollo
-    autoLoadEntities: true,
-  }), CommuneModule, RegionModule],
+    autoLoadEntities: false,
+  }),RegionModule,CommuneModule, UsersModule, AuthModule ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { constructor(private dataSource: DataSource) {}}
+export class AppModule {}

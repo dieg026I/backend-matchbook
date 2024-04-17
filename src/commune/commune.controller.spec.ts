@@ -1,17 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CommuneController } from './commune.controller';
-import { CommuneService } from './commune.service';
+import { CitiesController } from './commune.controller';
+import { CitiesService } from './commune.service';
 
 describe('CommuneController', () => {
-  let controller: CommuneController;
+  let controller: CitiesController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [CommuneController],
-      providers: [CommuneService],
+      controllers: [CitiesController],
+      providers: [CitiesService],
     }).compile();
 
-    controller = module.get<CommuneController>(CommuneController);
+    controller = module.get<CitiesController>(CitiesController);
   });
 
   it('should be defined', () => {
