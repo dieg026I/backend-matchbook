@@ -15,11 +15,11 @@ import { Region } from './region/entities/region.entity';
     type: 'postgres',
     host: 'localhost',
     port: 5432,
-    username: 'dieg026',
+    username: 'postgres',
     password: '95809580Dd',
     database: 'Matchbook_BD',
     entities: [Users, Cities, Region],
-    synchronize: true, // Solo para entornos de desarrollo
+    synchronize: false, // Solo para entornos de desarrollo
     autoLoadEntities: false,
   }),RegionModule,CommuneModule, UsersModule, AuthModule ],
   controllers: [AppController],
