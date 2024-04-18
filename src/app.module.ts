@@ -1,3 +1,4 @@
+
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -9,9 +10,11 @@ import { CommuneModule } from './commune/commune.module';
 import { RegionModule } from './region/region.module';
 import { Cities } from './commune/entities/cities.entity';
 import { Region } from './region/entities/region.entity';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
-  imports: [ TypeOrmModule.forRoot({
+  imports: [
+    TypeOrmModule.forRoot({
     type: 'postgres',
     host: 'localhost',
     port: 5432,
@@ -21,7 +24,11 @@ import { Region } from './region/entities/region.entity';
     entities: [Users, Cities, Region],
     synchronize: false, // Solo para entornos de desarrollo
     autoLoadEntities: false,
-  }),RegionModule,CommuneModule, UsersModule, AuthModule ],
+  }),RegionModule,CommuneModule, UsersModule, AuthModule,
+     JwtModule.register({
+     secret: 'secretKey', 
+     signOptions: { expiresIn: '60m' }
+  }) ],
   controllers: [AppController],
   providers: [AppService],
 })
