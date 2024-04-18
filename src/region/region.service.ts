@@ -10,7 +10,7 @@ export class RegionService {
     private regionRepository: Repository<Region>,
   ) {}
 
-  async createRegion(region: Region): Promise<Region> {
+  async create(region: Region): Promise<Region> {
     return await this.regionRepository.save(region);
   }
   findAll(): Promise<Region[]> {
@@ -20,11 +20,11 @@ export class RegionService {
   findOne(id_region: number): Promise<Region | null> {
     return this.regionRepository.findOneBy({id_region});
   }
-  async updateRegion(id_region: number, user: Region): Promise<Region> {
+  async update(id_region: number, user: Region): Promise<Region> {
     await this.regionRepository.update(id_region, user);
     return this.findOne(+id_region);
   }
-  async removeRegion(id: number): Promise<void> {
+  async remove(id: number): Promise<void> {
     await this.regionRepository.delete(+id);
   }
 }

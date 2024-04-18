@@ -10,7 +10,7 @@ export class CitiesService {
     private communeRepository: Repository<Cities>,
   ) {}
 
-  async createComune(cities: Cities): Promise<Cities> {
+  async create(cities: Cities): Promise<Cities> {
     return await this.communeRepository.save(cities);
   }
   findAll(): Promise<Cities[]> {
@@ -20,11 +20,11 @@ export class CitiesService {
   findOne(id_city: number): Promise<Cities | null> {
     return this.communeRepository.findOneBy({id_city});
   }
-  async updateUser(id: number, user: Cities): Promise<Cities> {
+  async update(id: number, user: Cities): Promise<Cities> {
     await this.communeRepository.update(id, user);
     return this.findOne(id);
   }
-  async removeCity(id_city: string): Promise<void> {
+  async remove(id_city: number): Promise<void> {
     await this.communeRepository.delete(id_city);
   }
 }

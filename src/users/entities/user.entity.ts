@@ -1,9 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { Cities } from 'src/commune/entities/cities.entity';
 import { Region } from 'src/region/entities/region.entity';
 
 
-@Entity()
+@Entity('users')
 export class Users {
   @PrimaryGeneratedColumn()
   rut_user: string;
@@ -29,10 +29,12 @@ export class Users {
   @Column()
   photo_user: string;
 
-  @ManyToOne(() => Cities)
-  commune: Cities[];
+  @ManyToOne(() => Cities, (city) => city.name)
+  @JoinColumn({ name: 'id_city' })
+  city: Cities;
 
-  @ManyToOne(() => Region)
+  @ManyToOne(() => Region, (region) => region.name_region)
+  @JoinColumn({ name: 'id_city' })
   region: Region[];
 
 

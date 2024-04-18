@@ -1,7 +1,7 @@
 
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, OneToMany } from 'typeorm';
 import { Region } from '../../region/entities/region.entity';
-@Entity()
+@Entity('cities')
 export class Cities {
   @PrimaryGeneratedColumn()
   id_city: number;
@@ -9,7 +9,7 @@ export class Cities {
   @Column()
   name: string;  
   
-  @OneToMany(type => Region, region=> region.name_region)
+  @OneToMany(type => Region, region=> region.id_region)
   region: Region[];
   
 

@@ -8,7 +8,7 @@ export class RegionController {
 
   @Post()
   create(@Body() region: Region) {
-    return this.regionService.createRegion(region);
+    return this.regionService.create(region);
   }
 
   @Get()
@@ -23,11 +23,11 @@ export class RegionController {
 
   @Patch(':id')
   update(@Param('id') id: number, @Body() region: Region) {
-    return this.regionService.updateRegion(+id, region);
+    return this.regionService.update(+id, region);
   }
 
   @Delete(':id')
   remove(@Param('id') id: number) {
-    return this.regionService.removeRegion(+id);
+    return this.regionService.remove(+id);
   }
 }
