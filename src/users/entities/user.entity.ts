@@ -29,12 +29,11 @@ export class Users {
   @Column()
   photo_user: string;
 
-  @ManyToOne(() => Cities, (city) => city.name)
-  @JoinColumn({ name: 'id_city' })
+  @ManyToOne(() => Cities, (city) => city.id_city)
   city: Cities;
 
-  @ManyToOne(() => Region, (region) => region.name_region)
-  @JoinColumn({ name: 'id_city' })
+  @ManyToOne(() => Region, (region) => region.id_region)
+  @JoinColumn({ name: 'city_id' })
   region: Region[];
 
 
