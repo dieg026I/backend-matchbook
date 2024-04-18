@@ -1,6 +1,7 @@
 
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
 import { Region } from '../../region/entities/region.entity';
+import { Users } from 'src/users/entities/user.entity';
 @Entity('cities')
 export class Cities {
   @PrimaryGeneratedColumn()
@@ -9,8 +10,12 @@ export class Cities {
   @Column()
   name: string;  
   
-  @OneToMany(type => Region, region=> region.id_region)
-  region: Region[];
+  @OneToMany(() => Users, (user) => user.city)
+  users: Users[];
+
+  @ManyToOne(() => Region, (region) => region.cities)
+  @JoinColumn({ name: 'id_region' })
+  region: Region;
   
 
 }

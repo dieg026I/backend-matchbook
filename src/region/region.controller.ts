@@ -16,17 +16,17 @@ export class RegionController {
     return this.regionService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: number) {
+  @Get(':id_region')
+  findOne(@Param('id_region') id: number) {
     return this.regionService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: number, @Body() region: Region) {
+  @Patch(':id_region')
+  update(@Param('id_region') id: number, @Body() region: Region) {
     return this.regionService.update(+id, region);
   }
 
-  @Delete(':id')
+  @Delete(':id_region')
   remove(@Param('id') id: number) {
     return this.regionService.remove(+id);
   }

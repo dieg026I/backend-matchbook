@@ -29,12 +29,9 @@ export class Users {
   @Column()
   photo_user: string;
 
-  @ManyToOne(() => Cities, (city) => city.id_city)
-  city: Cities;
-
-  @ManyToOne(() => Region, (region) => region.id_region)
+  @ManyToOne(() => Cities, (city) => city.users)
   @JoinColumn({ name: 'city_id' })
-  region: Region[];
+  city: Cities;
 
 
 }
